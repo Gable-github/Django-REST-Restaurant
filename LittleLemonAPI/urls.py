@@ -3,8 +3,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("menu-items", views.MenuItemsView.as_view({'get': 'list'})),
-    path("menu-items/<int:pk>", views.MenuItemsView.as_view({'get': 'retrieve'})),
+    path("menu-items/<str:name>/", views.MenuItemsView.as_view({'get': 'retrieve'})),
+    path("menu-items/", views.MenuItemsView.as_view({'get': 'list'})),
     path("cart/", views.CartItemsView.as_view({'get': 'list'})),
     path("order/", views.OrderItemsView.as_view({'get': 'list'}))
 
