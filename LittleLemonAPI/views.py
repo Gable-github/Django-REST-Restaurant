@@ -25,23 +25,6 @@ class MenuItemsView(viewsets.ModelViewSet):
     
         return [IsAuthenticated()]
 
-# class SingleItemView(viewsets.ModelViewSet):
-#     queryset = MenuItem.objects.all()
-#     serializer_class = MenuItemSerializer
-#     lookup_field = 'pk'
-
-#     def retrieve(self, request, *args, **kwargs):
-#         instance = self.get_object()
-#         serializers = self.get_serializer(instance)
-#         return Response(serializers.data)
-    
-#     def get_permissions(self):
-#         if(self.request.method=='GET'):
-#             return []
-    
-#         return [IsAuthenticated()]
-    
-
 
 class OrderItemsView(viewsets.ModelViewSet):
     queryset = Order.objects.all()

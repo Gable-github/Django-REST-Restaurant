@@ -26,15 +26,20 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ['delivery_status', 'cart', 'customer','delivery_crew']
 
+# class CartItemSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = CartItem
+#         fields = '__all__'
+
 class CartSerializer(serializers.ModelSerializer):
-    customer = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(),
-        default=serializers.CurrentUserDefault()
+    items = serializers.PrimaryKeyRelatedField(
+        queryset = MenuItem.objects.all(),
+        default = serializers.CurrentUserDefault()
     )
 
     class Meta:
         model = Cart
-        fields = ['customer', 'items']
+        fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
