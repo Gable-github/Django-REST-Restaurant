@@ -7,35 +7,12 @@ from django.contrib.auth import get_user_model # If used custom user model
 UserModel = get_user_model()
 
 class OrderSerializer(serializers.ModelSerializer):
-    delivery_crew = serializers.PrimaryKeyRelatedField(
-        queryset = DeliveryCrew.objects.all(),
-        default = serializers.CurrentUserDefault()
-    )
-
-    customer = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(),
-        default=serializers.CurrentUserDefault()
-    )
-
-    cart = serializers.PrimaryKeyRelatedField(
-        queryset = Cart.objects.all(),
-        default = serializers.CurrentUserDefault()
-    )
 
     class Meta:
         model = Order
         fields = ['delivery_status', 'cart', 'customer','delivery_crew']
 
-# class CartItemSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CartItem
-#         fields = '__all__'
-
 class CartSerializer(serializers.ModelSerializer):
-    items = serializers.PrimaryKeyRelatedField(
-        queryset = MenuItem.objects.all(),
-        default = serializers.CurrentUserDefault()
-    )
 
     class Meta:
         model = Cart
