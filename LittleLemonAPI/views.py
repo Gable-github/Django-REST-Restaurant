@@ -43,6 +43,15 @@ class CartItemsView(viewsets.ModelViewSet):
         user = self.request.user
         return Cart.objects.filter(user=user)
 
+    def perform_create(self, serializer):
+        item = self.request.data.get('item')
+        serializer.save(user=self.request.user)
+
+    def delete(self, request):
+        user = self.request.user
+        Cart.objects.filter(user=user).delete()
+        return Response(status=204)
+
     def get_permissions(self):
         if(self.request.method=='GET' or self.request.method=='POST'):
             return []
